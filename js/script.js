@@ -55,9 +55,23 @@ const app = new Vue(
             changePictureToIndex: function(indexToBeChanged){
                 this.activeImageIndex = indexToBeChanged;
             },
+
+            startAutoplay: function(){
+                if(this.autoPlay === null){
+                    this.autoPlay = setInterval(() => {
+                        this.nextPicture();
+                    }, 2000);
+                }
+            },
+
+            stopAutoplay: function(){
+                clearInterval(this.autoPlay);
+                this.autoPlay = null;
+            }
         },
 
         created(){
+            this.startAutoplay();
         },
     }
 ) 
