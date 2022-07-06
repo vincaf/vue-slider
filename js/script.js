@@ -37,7 +37,7 @@ const app = new Vue(
 
         methods: {
             nextPicture: function(){
-                if(this.activeImageIndex === this.slides.lenght - 1){
+                if(this.activeImageIndex > this.slides.lenght - 1){
                     this.activeImageIndex = 0;
                 } else {
                     this.activeImageIndex++;
@@ -45,11 +45,15 @@ const app = new Vue(
             },
 
             previousPicture: function(){
-                if(this.activeImageIndex === 0){
-                    this.activeImageIndex = this.slides.lenght;
+                if(this.activeImageIndex < 0){
+                    this.activeImageIndex = this.slides.lenght - 1;
                 } else {
                     this.activeImageIndex--;
                 }
+            },
+
+            changePictureToIndex: function(indexToBeChanged){
+                this.activeImageIndex = indexToBeChanged;
             },
         },
 
